@@ -1,4 +1,4 @@
-# 👳🏿‍♂️ Thugware – Meet Version
+# Thugware – Meet Version
 for zoom check here : [Zoom Version]((https://github.com/crackbob/Thugware/tree/main)) 
 <details>
   
