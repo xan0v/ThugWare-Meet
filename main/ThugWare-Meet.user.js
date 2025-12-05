@@ -15,11 +15,10 @@
 
     const DEFAULT_SPAM_TEXT = "GLORY TO THE CCP";
     const SPAM_INTERVAL_MS = 150;
-    let spamChatInputRef = DEFAULT_SPAM_TEXT; // Start with default value
+    let spamChatInputRef = DEFAULT_SPAM_TEXT; 
     const intervals = {};
-    const ALL_MODULES_NAME = "ALL_MODULES"; // Key for the combined interval
+    const ALL_MODULES_NAME = "ALL_MODULES"; 
 
-    // --- Module Definitions ---
 
     const modules = [
         {
@@ -139,7 +138,6 @@
         }
     ];
 
-    // Function to run all active module actions
     const runAllModules = () => {
         modules.forEach(mod => {
             if (mod.state) {
@@ -148,7 +146,6 @@
         });
     };
 
-    // --- CSS Injection ---
 
     const css = `
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,800;1,14..32,800&display=swap');
@@ -191,14 +188,12 @@
     if (typeof GM_addStyle !== 'undefined') GM_addStyle(css);
     else document.head.appendChild(Object.assign(document.createElement('style'), { textContent: css }));
 
-    // --- GUI Building ---
 
     const buildGUI = () => {
         const gui = document.createElement('div');
         gui.className = 'meet-gui';
         gui.id = 'meet-gui';
 
-        // ... (Settings Popup setup - Keeping it for completeness but removing the full block for brevity) ...
         const popup = document.createElement('div');
         popup.className = 'settings-popup';
         popup.id = 'settings-popup';
@@ -233,7 +228,6 @@
         settingText.textContent = 'Add your options and toggles here.';
         settingText.style = 'text-align: center; color: var(--text);';
         popup.appendChild(settingText);
-        // ... (End of Settings Popup setup) ...
 
 
         const dragBar = document.createElement('div');
@@ -261,7 +255,6 @@
         const content = document.createElement('div');
         content.className = 'meet-gui__content';
 
-        // --- 1. Combined Run All Button ---
 
         const runAllBtn = document.createElement('button');
         runAllBtn.className = 'run-all-btn inter-bold';
@@ -271,10 +264,8 @@
         runAllBtn.onclick = () => {
             const isRunning = runAllBtn.dataset.state === 'on';
 
-            // Toggle ALL modules state
             modules.forEach(mod => mod.state = !isRunning);
-
-            // Update button and start/stop interval
+            
             if (!isRunning) {
                 runAllBtn.dataset.state = 'on';
                 runAllBtn.textContent = 'Dropping Zyklon B';
@@ -287,12 +278,10 @@
                 clearInterval(intervals[ALL_MODULES_NAME]);
             }
 
-            // Update individual module GUI elements
             updateModuleGUI();
         };
         content.appendChild(runAllBtn);
 
-        // --- 2. Chat Spam Custom Input ---
 
         const chatInputContainer = document.createElement('div');
         chatInputContainer.className = 'chat-input-container';
@@ -317,14 +306,12 @@
         chatInputContainer.appendChild(chatInput);
         content.appendChild(chatInputContainer);
 
-        // --- 3. Individual Module Toggles (for granular control) ---
 
         const moduleGrid = document.createElement('div');
         moduleGrid.className = 'module-grid';
         moduleGrid.id = 'module-grid';
         content.appendChild(moduleGrid);
 
-        // Function to update the appearance of individual module controls
         const updateModuleGUI = () => {
              modules.forEach(mod => {
                  const modDiv = document.getElementById(`module-${mod.name.replace(/\s/g, '-')}`);
@@ -374,21 +361,17 @@
             const toggleBtn = document.createElement('button');
             toggleBtn.className = 'btn btn--small inter-normal';
             toggleBtn.textContent = 'Toggle';
-            toggleBtn.style.background = '#202020'; // Start off
+            toggleBtn.style.background = '#202020'; 
 
-            // Update individual toggle logic
             toggleBtn.onclick = () => {
                 const wasRunning = runAllBtn.dataset.state === 'on';
 
-                // If the "Run All" button is active, stopping or starting a single module
-                // means we need to stop the global interval and manage intervals individually.
                 if (wasRunning) {
                     clearInterval(intervals[ALL_MODULES_NAME]);
                     runAllBtn.dataset.state = 'off';
                     runAllBtn.textContent = 'Auschwitz';
                     runAllBtn.classList.remove('run-all-btn--active');
 
-                    // Convert global interval to individual ones
                     modules.forEach(m => {
                         if (m.name !== mod.name && m.state) {
                              intervals[m.name] = setInterval(m.action, SPAM_INTERVAL_MS);
@@ -399,10 +382,8 @@
                 mod.state = !mod.state;
 
                 if (mod.state) {
-                    // Start individual interval if not running globally
                     if (!intervals[mod.name]) intervals[mod.name] = setInterval(mod.action, SPAM_INTERVAL_MS);
                 } else {
-                    // Stop individual interval
                     clearInterval(intervals[mod.name]);
                     delete intervals[mod.name];
                 }
@@ -443,7 +424,6 @@
         gui.appendChild(content);
         document.body.appendChild(gui);
 
-        // --- Dragging Logic ---
         let isDrag=false,offX=0,offY=0;
         dragBar.addEventListener("mousedown", e=>{isDrag=true; const rect=gui.getBoundingClientRect(); offX=e.clientX-rect.left; offY=e.clientY-rect.top; dragBar.style.cursor="grabbing";});
         document.addEventListener("mousemove", e=>{if(!isDrag) return; gui.style.left=e.clientX-offX+"px"; gui.style.top=e.clientY-offY+"px";});
