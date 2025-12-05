@@ -6,7 +6,7 @@ for zoom check here : [Zoom Version]((https://github.com/crackbob/Thugware/tree/
   
   #### One Click install link
   For Tampermonkey & Violetmonkey ONLY!
-[Install main/ThugWare-Public.js](https://github.com/xan0v/ThugWare-Meet/raw/main/main/ThugWare-Public.js) 
+[Install main/ThugWare-Public.js](https://github.com/xan0v/ThugWare-Meet/raw/main/main/ThugWare-Meet.user.js)
 
 Not installed? Install them
 *([Tampermonkey](https://tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/))*
