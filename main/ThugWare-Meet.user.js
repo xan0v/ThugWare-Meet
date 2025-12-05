@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name          ThugWare - Meet Ver Combined
+// @name          ThugWare - Meet 
 // @namespace     http://tampermonkey.net/
 // @version       0.2
 // @icon          https://pleygrawn.vercel.app/xanov_clear.png
 // @description   Tottenkopf - Combined features
-// @author        navox (modified by AI)
+// @author        navox
 // @match         https://meet.google.com/*
 // @grant         GM_addStyle
 // @run-at        document-end
