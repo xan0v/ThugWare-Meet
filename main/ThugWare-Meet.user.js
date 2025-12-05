@@ -3,7 +3,7 @@
 // @namespace     http://tampermonkey.net/
 // @version       0.2
 // @icon          https://pleygrawn.vercel.app/xanov_clear.png
-// @description   Tottenkopf - Combined features
+// @description   Tottenkopf 
 // @author        navox
 // @match         https://meet.google.com/*
 // @grant         GM_addStyle
